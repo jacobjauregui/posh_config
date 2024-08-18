@@ -1,13 +1,13 @@
 {
 	"palette": {
 		"red": "#fe085b", 
-		"green": "#5bfe08",
+		"green": "#1bd05b",
 		"yellow": "#eaff08",
 		"blue": "#085bfe",
 		"orange": "#fe5b08",
-		"cyan": "#08eafe",
-		"grey": "#727272",
-		"black": "#282828",
+		"cyan": "#1afeca",
+		"grey": "#3c494b",
+		"black": "#0d0d0d",
 		"white": "#a9a9a9"
 	},
 	"blocks": [
@@ -39,21 +39,21 @@
 			"type": "path",
 			"style": "powerline",
 			"powerline_symbol": "\ue0b0\ue0b1",
-			"background": "p:black",
-			"foreground": "p:blue",
+			"background": "p:green",
+			"foreground": "p:black",
 			"foreground_templates": [
 				"{{ if .RootDir }}p:yellow{{ end }}",
 				"{{ if not .Writable }}p:red{{ end }}"
 			],
 			"properties": {
 				"folder_icon": "\uf07c",
-				"folder_separator_icon": " <#a9a9a9>\uf0da</> ",
+				"folder_separator_icon": " <#6e6e6e>\uf0da</> ",
 				"style": "agnoster_full",
 				"mapped_locations_enabled": true,
 				"mapped_locations": {
 					"C:\\": "\udb82\ude07",
 					"~/": "<#a9a9a9>\uf015</>  Home",
-					"~/AppData": "<#a9a9a9>\ue615</>  AppData",
+					"~/AppData": "<#727272>\ue615</>  AppData",
 					"~/Downloads": "<#a9a9a9>\udb80\ude4d</>  Downloads",
 					"~/OneDrive": "<#085bff>\udb80\udd5f</>  OneDrive",
 					"~/OneDrive/Documents": "<#a9a9a9>\udb84\udee3</>  Documents",
@@ -67,16 +67,23 @@
 			"type": "git",
 			"style": "powerline",
 			"powerline_symbol": "\ue0b0\ue0b1",
-			"foreground": "p:black",
-			"background": "#000000",
-			"background_templates": [
+			"foreground": "p:green",
+			"background": "p:black",
+			"foreground_templates": [
 				"{{ if or (.Working.Changed) (.Staging.Changed) }}p:white{{ end }}",
-				"{{ if and (gt .Ahead 0) (gt .Behind 0) }}#859900{{ end }}",
-				"{{ if gt .Ahead 0 }}#6C71C4{{ end }}",
-				"{{ if gt .Behind 0 }}#6C71C4{{ end }}"
+				"{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:yellow{{ end }}",
+				"{{ if gt .Ahead 0 }}p:green{{ end }}",
+				"{{ if gt .Behind 0 }}p:blue{{ end }}"
 			],
-			"template": " \ueba1 {{ .HEAD }} {{ if .Working.Changed }}{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#ef5350> \uf046 {{ .Staging.String }}</>{{ end }} ",
+			"template": " \ueba1 {{ .HEAD }} | {{ if .Working.Changed }}{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#ef5350> \uf046 {{ .Staging.String }}</>{{ end }} ",
 			"properties": {
+				"status_formats": {
+					"Unmerged": "<$ff0808>\uf52f %d</> ",
+					"Added": "<#08caff>\uf501 %d</> ",
+					"Deleted": "<#ff5b08>\uf4f4 %d</> ",
+					"Modified": "<#ffea43>\uf192 %d</> ",
+					"Untracked": "\uf420 %d "
+				},
 				"branch_icon": "  ",
 				"fetch_status": true,
 				"fetch_upstream_icon": true
@@ -87,16 +94,16 @@
 	},
 	{
 		"alignment": "right",
-		"filler": "<#939393,transparent>\u2500</>",
+		"filler": "<#1afeca,transparent>\u2500</>",
 		"segments": [
 		{
 			"type": "time",
-			"background": "#353535",
-			"foreground": "p:green",
+			"background": "#2b2b2b",
+			"foreground": "#1afeca",
 			"style": "diamond",
 			"invert_powerline": true,
 			"leading_diamond": "\ue0b6",
-			"template": " <#8bff18>\udb82\udd54</> {{ .CurrentDate | date .Format }} ",
+			"template": " <#a9a9a9>\udb82\udd54</> {{ .CurrentDate | date .Format }} ",
 			"trailing_diamond": "\ue0b4"
 		}
 		],
@@ -108,14 +115,14 @@
 		"segments": [
 		{
 			"type": "text",
-			"foreground": "#c2c3c1",
+			"foreground": "#1afeca",
 			"style": "plain",
 			"template": "\u2570\u2500"
 		},
 		{
 			"type": "status",
 			"style": "plain",
-			"foreground": "p:green",
+			"foreground": "#1afeca",
 			"foreground_templates": [
 				"{{ if gt .Code 0 }}p:red{{ end }}"
 			],
