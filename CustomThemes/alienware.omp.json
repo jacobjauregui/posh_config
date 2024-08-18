@@ -15,14 +15,11 @@
 		"alignment": "left",
 		"segments": [
 		{
-			"type": "os",
+			"type": "text",
 			"style": "diamond",
 			"background": "p:grey",
-			"foreground": "p:cyan",
-			"properties": {
-				"windows": "\ue62a "
-			},
-			"template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+			"foreground": "p:green",
+			"template": " \ue36e ",
 			"leading_diamond": "<#c3c1c2,transparent>\u256d\u2500</>\ue0b6"
 		},
 		{
@@ -115,7 +112,7 @@
 		"segments": [
 		{
 			"type": "text",
-			"foreground": "#1afeca",
+			"foreground": "p:green",
 			"style": "plain",
 			"template": "\u2570\u2500"
 		},
