@@ -75,7 +75,7 @@
 				"{{ if gt .Ahead 0 }}p:green{{ end }}",
 				"{{ if gt .Behind 0 }}p:blue{{ end }}"
 			],
-			"template": " \ueba1 {{ .HEAD }} | {{ if .Working.Changed }}{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#ef5350> \uf046 {{ .Staging.String }}</>{{ end }} ",
+			"template": " \ueba1 {{ .HEAD }} {{ if .Working.Changed }}{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#ef5350> \uf046 {{ .Staging.String }}</>{{ end }} ",
 			"properties": {
 				"status_formats": {
 					"Unmerged": "<$ff0808>\uf52f %d</> ",
@@ -98,12 +98,12 @@
 		"segments": [
 		{
 			"type": "time",
-			"background": "#2b2b2b",
+			"background": "#000303",
 			"foreground": "#1afeca",
 			"style": "diamond",
 			"invert_powerline": true,
 			"leading_diamond": "\ue0b6",
-			"template": " <#a9a9a9>\udb82\udd54</> {{ .CurrentDate | date .Format }} ",
+			"template": " <#939696>\udb82\udd54</> {{ .CurrentDate | date .Format }} ",
 			"trailing_diamond": "\ue0b4"
 		}
 		],
@@ -122,14 +122,14 @@
 		{
 			"type": "status",
 			"style": "plain",
-			"foreground": "#1afeca",
+			"foreground": "p:green",
 			"foreground_templates": [
 				"{{ if gt .Code 0 }}p:red{{ end }}"
 			],
 			"properties": {
 				"always_enabled": true
 			},
-			"template": "<b><i><#085bff>PS</></i></b> \ue683 "
+			"template": "<b><i><#c2c3c1>PS</></i></b> \ue683 "
 		}
 		],
 		"type": "prompt"
