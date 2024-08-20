@@ -6,56 +6,68 @@
 		"blue": "#085bfe",
 		"orange": "#fe5b08",
 		"cyan": "#1afeca",
-		"grey": "#3c494b",
-		"black": "#0d0d0d",
-		"white": "#a9a9a9"
+		"dark_black": "#030808",
+		"black": "#1d1d1d",
+		"light_black": "#3c494b",
+		"dark_grey": "#5b5b5b",
+		"grey": "#727272",
+		"light_grey": "#939393",
+		"white": "#a9a9a9",
+		"light_white": "#eaeaea"
 	},
 	"blocks": [
 	{
 		"alignment": "left",
 		"segments": [
 		{
-			"type": "text",
+			"type": "os",
 			"style": "diamond",
-			"background": "p:grey",
+			"background": "p:light_black",
 			"foreground": "p:green",
-			"template": " \ue36e ",
-			"leading_diamond": "<#c3c1c2,transparent>\u256d\u2500</>\ue0b6"
+			"properties": {
+				"windows": "\ue62a",
+				"macos": "\ue711",
+				"linux": "\ue712",
+				"arch": "\udb82\udcc7",
+				"ubuntu": "\uebc9",
+				"android": "\ue70e"
+			},
+			"template": "{{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+			"leading_diamond": "<p:green,transparent>\u256d\u2500</>\ue0b6"
 		},
 		{
 			"type": "root",
-			"background": "#1a1a1a",
-			"foreground": "#ea2020",
+			"background": "p:black",
+			"foreground": "p:blue",
 			"properties": {
-				"root_icon": "\uedcf"
+				"root_icon": "\ued25"
 			},
 			"style": "diamond",
-			"template": "<parentBackground>\ue0b0</> <#ff8000>\ueaf2</> "
+			"template": "<parentBackground>\ue0b0</> <p:orange>\ueaf2</> "
 		},
 		{
 			"type": "path",
 			"style": "powerline",
-			"powerline_symbol": "\ue0b0\ue0b1",
+			"powerline_symbol": "\ue0b0\ueab6",
 			"background": "p:green",
-			"foreground": "p:black",
+			"foreground": "p:dark_black",
 			"foreground_templates": [
-				"{{ if .RootDir }}p:yellow{{ end }}",
 				"{{ if not .Writable }}p:red{{ end }}"
 			],
 			"properties": {
 				"folder_icon": "\uf07c",
-				"folder_separator_icon": " <#6e6e6e>\uf0da</> ",
+				"folder_separator_icon": " <p:grey>\uf0da</> ",
 				"style": "agnoster_full",
 				"mapped_locations_enabled": true,
 				"mapped_locations": {
-					"C:\\": "\udb82\ude07",
-					"~/": "<#a9a9a9>\uf015</>  Home",
-					"~/AppData": "<#727272>\ue615</>  AppData",
-					"~/Downloads": "<#a9a9a9>\udb80\ude4d</>  Downloads",
-					"~/OneDrive": "<#085bff>\udb80\udd5f</>  OneDrive",
-					"~/OneDrive/Documents": "<#a9a9a9>\udb84\udee3</>  Documents",
-					"~/OneDrive/Files": "<#a9a9a9>\udb84\udee3</>  Files",
-					"~/OneDrive/Pictures": "<#a9a9a9>\udb80\ude4f</>  Pictures"
+					"C:\\": "<p:grey>\udb82\ude07</>",
+					"~/": "<p:grey>\uf015</>  Home",
+					"~/AppData": "<p:grey>\ue615</>  AppData",
+					"~/Downloads": "<p:blue>\udb80\ude4d</>  Downloads",
+					"~/OneDrive": "<p:blue>\udb80\udd5f</>  OneDrive",
+					"~/OneDrive/Documents": "<p:light_grey>\udb85\udd17</>  Documents",
+					"~/OneDrive/Files": "<p:orange>\udb80\ude4c</>  Files",
+					"~/OneDrive/Pictures": "<p:blue>\udb80\ude4f</>  Pictures"
 				}
 			},
 			"template": " {{ .Path }} "
@@ -63,7 +75,7 @@
 		{
 			"type": "git",
 			"style": "powerline",
-			"powerline_symbol": "\ue0b0\ue0b1",
+			"powerline_symbol": "\ue0b0",
 			"foreground": "p:green",
 			"background": "p:black",
 			"foreground_templates": [
@@ -91,16 +103,16 @@
 	},
 	{
 		"alignment": "right",
-		"filler": "<#1afeca,transparent>\u2500</>",
+		"filler": "<p:cyan,transparent>\u2500</>",
 		"segments": [
 		{
 			"type": "time",
-			"background": "#000303",
-			"foreground": "#1afeca",
 			"style": "diamond",
+			"background": "p:black",
+			"foreground": "p:green",
 			"invert_powerline": true,
 			"leading_diamond": "\ue0b6",
-			"template": " <#939696>\udb82\udd54</> {{ .CurrentDate | date .Format }} ",
+			"template": " <p:white>\udb82\udd54</> {{ .CurrentDate | date .Format }} ",
 			"trailing_diamond": "\ue0b4"
 		}
 		],
@@ -112,9 +124,34 @@
 		"segments": [
 		{
 			"type": "text",
-			"foreground": "p:green",
-			"style": "plain",
-			"template": "\u2570\u2500"
+			"style": "diamond",
+			"background": "p:dark_black",
+			"foreground": "p:cyan",
+			"template": "{{ .HostName }} <p:green>\ue36e</> {{ .UserName }}",
+			"leading_diamond": "<p:cyan,transparent>\u2570\u2500</>\ue0b6"
+		},
+		{
+			"type": "shell",
+			"style": "powerline",
+			"powerline_symbol": "\ue0b0",
+			"background_templates": [
+				"{{ if eq .Shell \"pwsh\" }}#082b5b{{ end }}",
+				"{{ if eq .Shell \"sh\" }}p:dark_grey{{ end }}",
+				"{{ if eq .Shell \"zsh\" }}p:dark_black{{ end }}"
+			],
+			"foreground_templates": [
+				"{{ if eq .Shell \"pwsh\" }}p:light_white{{ end }}",
+				"{{ if eq .Shell \"sh\" }}p:yellow{{ end }}",
+				"{{ if eq .Shell \"zsh\" }}p:cyan{{ end }}"
+			],
+			"properties": {
+				"mapped_shell_names": {
+					"pwsh": "<b><i>\ue683</i></b> ",
+					"sh": "<b><i>\ue691</i></b>",
+					"zsh": "<b><i>\uf295</i></b>"
+				}
+			},
+			"template": " {{ if .Root }}\uf4df{{ else }}{{ .Name }}{{ end }}"
 		},
 		{
 			"type": "status",
@@ -126,7 +163,7 @@
 			"properties": {
 				"always_enabled": true
 			},
-			"template": "<b><i><#c2c3c1>PS</></i></b> \ue683 "
+			"template": " {{ if gt .Code 0 }}\uf46f{{ end }} "
 		}
 		],
 		"type": "prompt"
